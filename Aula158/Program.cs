@@ -1,16 +1,16 @@
-﻿Dictionary<string, int> dictionary = new Dictionary<string, int>();
+﻿
 
 string sourcePathFile = Console.ReadLine();
 
 try
 {
     using StreamReader sr = File.OpenText(sourcePathFile);
+    Dictionary<string, int> dictionary = new Dictionary<string, int>();
     while (!sr.EndOfStream)
     {
         string[] line = sr.ReadLine().Split(',');
         string candidate = line[0];
         int votes = int.Parse(line[1]);
-        dictionary.Add(candidate, votes);
 
         if (dictionary.ContainsKey(candidate))
         {
@@ -27,7 +27,7 @@ try
     }
 
 }
-catch(Exception e)
+catch(IOException e)
 {
-    Console.WriteLine(e.Message);
+    Console.WriteLine("An error occurred "+ e.Message);
 }
